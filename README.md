@@ -1,3 +1,5 @@
+[中文说明](https://github.com/oopsliu/Data-Cleaning-Tool/blob/master/README_CN.md)
+
 # TOOL DESCRIPTION #
 
 This tool is used for processing raw CSV(*.gz) datasets, in order to make it usable as valid inputs when running ArcGIS GeoAnalytics tools. Functions including removing redundant fields, filtering rows, transforming time stamps and adding UUID. 
