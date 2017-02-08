@@ -2,7 +2,7 @@
 在ArcGIS GeoAnalytics Server中可以将多种格式的数据注册为可供大数据分析工具使用的源数据，包括带分隔符的文本文件、Shapefile、要素服务等等。大数据分析工具对输入数据的格式有一定要求，比如必须包含唯一标识字段、必须有可识别的位置信息等，而直接从各种来源获取到的大数据未必符合GeoAnalytics Server的要求，或者包含过多的冗余信息，所以在进行大数据分析前应该对原始数据进行清理，以提高整个分析流程的效率。
 本工具以批量处理*.csv文件为例，利用Python（3.x）实现了部分常用的数据清洗功能，以方便在矢量大数据分析方面的应用。
 # 2	功能说明 #
-工具中处理数据部分主要利用了Python中的Pandas库，以及uuid库用来添加唯一识别码。
+工具中处理数据部分主要利用了Python中的Pandas库，以及uuid库用来添加唯一识别码
 ## 2.1 	数据清洗 ##
 2.1.1 	删除多余字段
 通过pandas.DataFrame(data=None, index=None, columns=None, dtype=None, copy=False)[source]
