@@ -5,32 +5,32 @@
 ## 2	功能说明 ##
 工具中处理数据部分主要利用了Python中的Pandas库，以及uuid库用来添加唯一识别码。
 ### 2.1 	数据清洗 ###
-2.1.1 	删除多余字段
+#### 2.1.1 	删除多余字段 ####
 通过pandas.DataFrame(data=None, index=None, columns=None, dtype=None, copy=False)[source]
 筛选出需要用到的字段：
 
     df = pandas.read_csv(inputCSV)
     selectCols = df[['MmeUeS1apId', 'Latitude','Longitude','TimeStamp']]
 
-2.1.2 	删除异常数据
+#### 2.1.2 	删除异常数据 ####
 通过查询条件过滤掉不符合要求的异常数据，如坐标值为零的数据：
 
     removeRows = selectCols[(selectCols.Latitude != 0) & (selectCols.Longitude != 0)]
 
-2.1.3 	转换时间戳格式
+#### 2.1.3 	转换时间戳格式 ####
 通过pandas.to_datetime(*args, **kwargs) 转换时间戳为可识读的日期时间格式：
 
     removeRows['TimeStamp'] = pandas.to_datetime(removeRows['TimeStamp'], unit = 'ms')
 
 ### 2.2 	数据回填 ###
 ArcGIS GeoAnalytics Server要求输入的数据必须包含唯一标识字段，如ObjectID, 对于没有OID字段的数据需要在前期数据处理时添加。如果数据没有表头字段信息，在注册至Server中时会自动添加上col_1、col_2等默认的名称，这样虽然不影响分析工具的使用，但是不易于识读每个字段代表的是什么，所以建议也在前期数据处理时回填上表头信息。
-2.2.1 	添加表头字段
+#### 2.2.1 	添加表头字段 ####
 通过pandas.DataFrame.columns属性添加表头字段，如：
 
     df = pandas.read_csv(inputCSV, header=None)
     df.columns = ['MmeUeS1apId', 'Latitude','Longitude','TimeStamp','LteScRSRP','LteScRSRQ','LteScTadv']
 
-2.2.2 	添加UUID
+#### 2.2.2 	添加UUID ####
  通过uuid.uuid4()创建随机uuid并追加至数据中，如：
 
     for i, row in removeRows.iterrows():
